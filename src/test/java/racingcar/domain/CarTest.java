@@ -5,6 +5,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class CarTest {
 
@@ -20,11 +22,14 @@ public class CarTest {
     }
 
 
-    @Test
+    @ParameterizedTest
+    @ValueSource(strings = {
+            "가나다라마바사",
+            "",
+            "  "
+    })
     @DisplayName("자동차 이름은 5자 이하")
-    void 자동차_이름_길이_예외처리() {
-        String name = "가나다라마바사";
-
+    void 자동차_이름_길이_예외처리(String name) {
         assertSimpleTest(() ->
                 assertThatThrownBy(() -> new Car(name, 0))
                         .isInstanceOf(IllegalArgumentException.class)
