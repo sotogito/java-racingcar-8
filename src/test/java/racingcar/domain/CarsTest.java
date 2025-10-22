@@ -5,6 +5,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class CarsTest {
 
@@ -13,7 +15,7 @@ class CarsTest {
         List<Car> cars = List.of();
 
         assertSimpleTest(() ->
-                assertThatThrownBy(() -> new Cars(cars))
+                assertThatThrownBy(() -> new Race(cars, 1))
                         .isInstanceOf(IllegalArgumentException.class)
         );
     }
@@ -27,7 +29,18 @@ class CarsTest {
         List<Car> cars = List.of(car1, car2, car3);
 
         assertSimpleTest(() ->
-                assertThatThrownBy(() -> new Cars(cars))
+                assertThatThrownBy(() -> new Race(cars, 1))
+                        .isInstanceOf(IllegalArgumentException.class)
+        );
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {0, 1000000})
+    void 시도횟수_범위_예외처리(int attempt) {
+        List<Car> cars = List.of(new Car("기"));
+
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> new Race(cars, attempt))
                         .isInstanceOf(IllegalArgumentException.class)
         );
     }
