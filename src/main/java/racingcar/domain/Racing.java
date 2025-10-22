@@ -7,11 +7,11 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-public class Race {
+public class Racing {
     private final List<Car> cars;
     private int attempt;
 
-    public Race(List<Car> cars, int attempt) {
+    public Racing(List<Car> cars, int attempt) {
         validateCarCount(cars);
         validateDuplicatedName(cars);
         validateAttemptCount(attempt);

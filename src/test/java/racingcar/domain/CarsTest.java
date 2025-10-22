@@ -15,7 +15,7 @@ class CarsTest {
         List<Car> cars = List.of();
 
         assertSimpleTest(() ->
-                assertThatThrownBy(() -> new Race(cars, 1))
+                assertThatThrownBy(() -> new Racing(cars, 1))
                         .isInstanceOf(IllegalArgumentException.class)
         );
     }
@@ -29,7 +29,7 @@ class CarsTest {
         List<Car> cars = List.of(car1, car2, car3);
 
         assertSimpleTest(() ->
-                assertThatThrownBy(() -> new Race(cars, 1))
+                assertThatThrownBy(() -> new Racing(cars, 1))
                         .isInstanceOf(IllegalArgumentException.class)
         );
     }
@@ -40,7 +40,7 @@ class CarsTest {
         List<Car> cars = List.of(new Car("기"));
 
         assertSimpleTest(() ->
-                assertThatThrownBy(() -> new Race(cars, attempt))
+                assertThatThrownBy(() -> new Racing(cars, attempt))
                         .isInstanceOf(IllegalArgumentException.class)
         );
     }
