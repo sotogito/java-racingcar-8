@@ -7,12 +7,13 @@ import java.util.Set;
 /**
  * 최종 우슨자 선발,
  */
-public class Cars {
+public class Race {
     private final List<Car> cars;
 
-    public Cars(List<Car> cars) {
+    public Race(List<Car> cars, int attempt) {
         validateCarCount(cars);
         validateDuplicatedName(cars);
+        validateAttemptCount(attempt);
 
         this.cars = cars;
     }
@@ -28,6 +29,12 @@ public class Cars {
         Set<Car> duplicatedCars = new HashSet<>(cars);
         if (cars.size() != duplicatedCars.size()) {
             throw new IllegalArgumentException("이름이 중복인 자동차가 존재합니다.");
+        }
+    }
+
+    private void validateAttemptCount(int attempt) {
+        if(attempt < 1 || attempt > 10000) {
+            throw new IllegalArgumentException("시도 횟수는 1~10,000번까지 입력 가능합니다.");
         }
     }
 
