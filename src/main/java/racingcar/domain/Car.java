@@ -4,12 +4,12 @@ public class Car {
     private String name;
     private Integer distance;
 
-    public Car(String name, Integer distance) {
+    public Car(String name) {
         name = name.trim();
         validateName(name);
 
         this.name = name;
-        this.distance = distance;
+        this.distance = 0;
     }
 
     public void move() {

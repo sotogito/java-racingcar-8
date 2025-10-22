@@ -1,4 +1,5 @@
 package racingcar.domain;
+
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -12,7 +13,7 @@ public class CarTest {
 
     @Test
     void 자동차_전진() {
-        Car car = new Car("수키피", 0);
+        Car car = new Car("수키피");
 
         car.move();
         Integer actual = car.getDistance();
@@ -31,7 +32,7 @@ public class CarTest {
     @DisplayName("자동차 이름은 5자 이하")
     void 자동차_이름_길이_예외처리(String name) {
         assertSimpleTest(() ->
-                assertThatThrownBy(() -> new Car(name, 0))
+                assertThatThrownBy(() -> new Car(name))
                         .isInstanceOf(IllegalArgumentException.class)
         );
     }
