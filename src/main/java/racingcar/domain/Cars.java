@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -22,7 +24,7 @@ public class Cars {
         return cars.size();
     }
 
-    public List<Car> updateCarsDistance(List<Integer> randomNumbers) {
+    public void updateCarsDistance(List<Integer> randomNumbers) {
         if (cars.size() != randomNumbers.size()) {
             throw new IllegalArgumentException("오류가 발생했습니다.");
         }
@@ -40,7 +42,18 @@ public class Cars {
                 car.move();
             }
         }
-        return cars;
+    }
+
+    public List<String> getWinningCarNames() {
+        List<String> winningCarNames = new ArrayList<>();
+
+        Car winningCar = Collections.max(cars); //todo 다른 방법 없나
+        for (Car car : cars) {
+            if (car.isWinningCar(winningCar)) {
+                winningCarNames.add(car.getName());
+            }
+        }
+        return winningCarNames;
     }
 
 
@@ -63,8 +76,7 @@ public class Cars {
         StringBuilder sb = new StringBuilder();
 
         for (Car car : cars) {
-            sb.append(car.toString())
-                    .append("/n");
+            sb.append(car.toString()).append("/n");
         }
         return sb.toString();
     }

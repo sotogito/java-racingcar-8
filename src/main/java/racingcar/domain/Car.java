@@ -2,7 +2,7 @@ package racingcar.domain;
 
 import java.util.Objects;
 
-public class Car {
+public class Car implements Comparable<Car> {
     private final String name;
     private Integer distance;
 
@@ -14,16 +14,16 @@ public class Car {
         this.distance = 0;
     }
 
-    public void move() {
-        this.distance++;
-    }
-
     public String getName() {
         return name;
     }
 
-    public Integer getDistance() {
-        return distance;
+    public void move() {
+        this.distance++;
+    }
+
+    public boolean isWinningCar(Car otherCar) {
+        return Objects.equals(distance, otherCar.distance);
     }
 
     private void validateName(String name) {
@@ -31,6 +31,7 @@ public class Car {
             throw new IllegalArgumentException("자동차 이름은 1~5자까지 입력 가능합니다.");
         }
     }
+
 
     @Override
     public boolean equals(Object o) {
@@ -47,6 +48,16 @@ public class Car {
     @Override
     public int hashCode() {
         return Objects.hash(name);
+    }
+
+    @Override
+    public int compareTo(Car o) {
+        return this.distance.compareTo(o.distance);
+    }
+
+    @Override
+    public String toString() {
+        return name + " : " + "-".repeat(distance);
     }
 
 }
