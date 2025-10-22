@@ -2,6 +2,8 @@ package racingcar.domain;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class CarTest {
@@ -15,6 +17,18 @@ public class CarTest {
         Integer expected = 1;
 
         assertThat(actual).isEqualTo(expected);
+    }
+
+
+    @Test
+    @DisplayName("자동차 이름은 5자 이하")
+    void 자동차_이름_길이_예외처리() {
+        String name = "가나다라마바사";
+
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> new Car(name, 0))
+                        .isInstanceOf(IllegalArgumentException.class)
+        );
     }
 
 }
