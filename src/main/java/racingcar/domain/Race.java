@@ -1,14 +1,15 @@
 package racingcar.domain;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
-/**
- * 최종 우슨자 선발,
- */
 public class Race {
     private final List<Car> cars;
+    private int attempt;
 
     public Race(List<Car> cars, int attempt) {
         validateCarCount(cars);
@@ -16,7 +17,39 @@ public class Race {
         validateAttemptCount(attempt);
 
         this.cars = cars;
+        this.attempt = attempt;
     }
+
+
+    public boolean isEndAttempt() {
+        return attempt <= 0;
+    }
+
+    public int getCarsCount() {
+        return cars.size();
+    }
+
+    public List<Car> updateCarsDistance(List<Integer> randomNumbers) {
+        if (cars.size() != randomNumbers.size()) {
+            throw new IllegalArgumentException("오류가 발생했습니다.");
+        }
+
+        Map<Car, Integer> carDistanceMap = new HashMap<>();
+        for (int i = 0; i < cars.size(); i++) {
+            carDistanceMap.put(cars.get(i), randomNumbers.get(i));
+        }
+
+        for (Entry<Car, Integer> entry : carDistanceMap.entrySet()) {
+            Car car = entry.getKey();
+            Integer randomNumber = entry.getValue();
+
+            if (randomNumber > 4) {
+                car.move();
+            }
+        }
+        return cars;
+    }
+
 
     private void validateCarCount(List<Car> cars) {
         int count = cars.size();
@@ -33,7 +66,7 @@ public class Race {
     }
 
     private void validateAttemptCount(int attempt) {
-        if(attempt < 1 || attempt > 10000) {
+        if (attempt < 1 || attempt > 10000) {
             throw new IllegalArgumentException("시도 횟수는 1~10,000번까지 입력 가능합니다.");
         }
     }
