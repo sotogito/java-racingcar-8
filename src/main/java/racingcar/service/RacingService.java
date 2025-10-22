@@ -39,10 +39,10 @@ public class RacingService {
         return new RacingResponse(carDistancePrintout, cars.getWinningCarNames());
     }
 
-    private List<Integer> getRandomNumbersByCarsCount(int attempt) {
+    private List<Integer> getRandomNumbersByCarsCount(int carsCount) {
         List<Integer> numbers = new ArrayList<>();
 
-        for (int i = 0; i < attempt; i++) {
+        for (int i = 0; i < carsCount; i++) {
             numbers.add(numberGenerator.generate());
         }
         return numbers;

@@ -4,6 +4,7 @@ import racingcar.dto.RacingRequest;
 import racingcar.dto.RacingResponse;
 import racingcar.service.RacingService;
 import racingcar.view.InputView;
+import racingcar.view.OutputView;
 
 public class RacingController {
     private final RacingService racingService;
@@ -19,6 +20,7 @@ public class RacingController {
         RacingRequest racingRequest = new RacingRequest(carNames, attempt);
 
         RacingResponse racingResponse = racingService.race(racingRequest);
+        OutputView.writeRacingResult(racingResponse);
     }
 
 }
