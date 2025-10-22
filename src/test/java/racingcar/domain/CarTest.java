@@ -4,6 +4,8 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.Collections;
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -13,13 +15,13 @@ public class CarTest {
 
     @Test
     void 자동차_전진() {
-        Car car = new Car("수키피");
+        Car car1 = new Car("수키피");
+        Car car2 = new Car("파블로");
+        List<Car> cars = List.of(car1, car2);
 
-        car.move();
-        Integer actual = car.getDistance();
-        Integer expected = 1;
+        car1.move();
 
-        assertThat(actual).isEqualTo(expected);
+        assertThat(Collections.max(cars)).isEqualTo(car1);
     }
 
 
