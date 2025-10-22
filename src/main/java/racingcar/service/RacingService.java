@@ -58,7 +58,7 @@ public class RacingService {
     }
 
     private List<String> parseCarNames(String carNames) {
-        return Arrays.stream(carNames.split(",")).toList();
+        return Arrays.stream(carNames.split(",", -1)).toList();
     }
 
 }
