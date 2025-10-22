@@ -7,23 +7,16 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-public class Racing {
+public class Cars {
     private final List<Car> cars;
-    private int attempt;
 
-    public Racing(List<Car> cars, int attempt) {
+    public Cars(List<Car> cars) {
         validateCarCount(cars);
         validateDuplicatedName(cars);
-        validateAttemptCount(attempt);
 
         this.cars = cars;
-        this.attempt = attempt;
     }
 
-
-    public boolean isEndAttempt() {
-        return attempt <= 0;
-    }
 
     public int getCarsCount() {
         return cars.size();
@@ -65,10 +58,15 @@ public class Racing {
         }
     }
 
-    private void validateAttemptCount(int attempt) {
-        if (attempt < 1 || attempt > 10000) {
-            throw new IllegalArgumentException("시도 횟수는 1~10,000번까지 입력 가능합니다.");
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+
+        for (Car car : cars) {
+            sb.append(car.toString())
+                    .append("/n");
         }
+        return sb.toString();
     }
 
 }
