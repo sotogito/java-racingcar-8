@@ -38,7 +38,7 @@ public class Cars {
             Car car = entry.getKey();
             Integer randomNumber = entry.getValue();
 
-            if (randomNumber > 4) {
+            if (randomNumber >= 4) {
                 car.move();
             }
         }
@@ -73,12 +73,12 @@ public class Cars {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
+        List<String> carNames = new ArrayList<>();
 
         for (Car car : cars) {
-            sb.append(car.toString()).append("/n");
+            carNames.add(car.toString());
         }
-        return sb.toString();
+        return String.join("\n", carNames);
     }
 
 }
