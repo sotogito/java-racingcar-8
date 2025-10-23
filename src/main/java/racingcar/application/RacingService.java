@@ -26,7 +26,7 @@ public class RacingService {
         Cars cars = CarsFactory.create(carNames);
         AttemptCounter attemptCounter = new AttemptCounter(attempt);
 
-        return processUpdateCarsDistance(cars, attemptCounter); //todo try-catch 예기치못함 오류?
+        return processUpdateCarsDistance(cars, attemptCounter);
     }
 
 
