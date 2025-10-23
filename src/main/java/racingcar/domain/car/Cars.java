@@ -26,7 +26,8 @@ public class Cars {
 
         for (int i = 0; i < cars.size(); i++) {
             Car car = cars.get(i);
-            int randomNumber = randomNumbers.get(i);
+            Integer randomNumber = randomNumbers.get(i);
+            validateRandomNumber(randomNumber);
 
             if (canMove(randomNumber)) {
                 car.move();
@@ -63,7 +64,13 @@ public class Cars {
     }
 
     private void validateRandomNumbers(List<Integer> randomNumbers) {
-        if (cars.size() != randomNumbers.size() || randomNumbers.contains(null)) {
+        if (randomNumbers == null || cars.size() != randomNumbers.size()) {
+            throw new IllegalArgumentException("예기치 못한 오류가 발생했습니다.");
+        }
+    }
+
+    private void validateRandomNumber(Integer randomNumber) {
+        if (randomNumber == null) {
             throw new IllegalArgumentException("예기치 못한 오류가 발생했습니다.");
         }
     }
