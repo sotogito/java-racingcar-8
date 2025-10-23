@@ -52,12 +52,11 @@ public class RacingService {
     }
 
     private Cars createRacing(List<String> carNames) {
-        List<Car> cars = new ArrayList<>();
-
-        for (String carName : carNames) {
-            cars.add(new Car(carName));
-        }
-        return new Cars(cars);
+        return new Cars(
+                carNames.stream()
+                        .map(Car::new)
+                        .toList()
+        );
     }
 
     private List<String> parseCarNames(String carNames) {
