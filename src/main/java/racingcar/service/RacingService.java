@@ -3,6 +3,7 @@ package racingcar.service;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.IntStream;
 import racingcar.domain.AttemptCounter;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
@@ -45,12 +46,9 @@ public class RacingService {
     }
 
     private List<Integer> getRandomNumbersByCarsCount(int carsCount) {
-        List<Integer> numbers = new ArrayList<>();
-
-        for (int i = 0; i < carsCount; i++) {
-            numbers.add(numberGenerator.generate());
-        }
-        return numbers;
+        return IntStream.range(0, carsCount)
+                .mapToObj(i -> numberGenerator.generate())
+                .toList();
     }
 
     private Cars createRacing(List<String> carNames) {
