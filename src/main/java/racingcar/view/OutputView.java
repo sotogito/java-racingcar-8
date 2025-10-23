@@ -12,14 +12,24 @@ public class OutputView {
         List<String> winningCarNames = racingResponse.winningCarNames();
 
         System.out.println();
+        writeExecutionResult(carDistancePrintout);
+        writeWinnerResult(winningCarNames);
+    }
+
+
+    private static void writeExecutionResult(List<String> carDistancePrintout) {
         System.out.println(WRITE_EXECUTION_RESULT_PRINTOUT);
+
         for (String carName : carDistancePrintout) {
             System.out.println(carName);
             System.out.println();
         }
-
-        System.out.printf(WRITE_WINNER_PRINTOUT, String.join(", ", winningCarNames));
     }
 
+    private static void writeWinnerResult(List<String> winningCarNames) {
+        System.out.printf(WRITE_WINNER_PRINTOUT,
+                String.join(", ", winningCarNames)
+        );
+    }
 
 }
