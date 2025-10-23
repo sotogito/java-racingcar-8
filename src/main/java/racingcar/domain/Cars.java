@@ -1,10 +1,10 @@
 package racingcar.domain;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Cars {
     private final List<Car> cars;
@@ -35,15 +35,12 @@ public class Cars {
     }
 
     public List<String> getWinningCarNames() {
-        List<String> winningCarNames = new ArrayList<>();
-
         Car winningCar = Collections.max(cars);
-        for (Car car : cars) {
-            if (car.isWinningCar(winningCar)) {
-                winningCarNames.add(car.getName());
-            }
-        }
-        return List.copyOf(winningCarNames);
+
+        return cars.stream()
+                .filter(car -> car.isWinningCar(winningCar))
+                .map(Car::getName)
+                .toList();
     }
 
 
@@ -73,12 +70,9 @@ public class Cars {
 
     @Override
     public String toString() {
-        List<String> carNames = new ArrayList<>();
-
-        for (Car car : cars) {
-            carNames.add(car.toString());
-        }
-        return String.join("\n", carNames);
+        return cars.stream()
+                .map(Car::toString)
+                .collect(Collectors.joining("\n"));
     }
 
 }
