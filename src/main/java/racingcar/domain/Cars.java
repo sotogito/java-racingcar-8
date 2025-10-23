@@ -53,7 +53,7 @@ public class Cars {
                 winningCarNames.add(car.getName());
             }
         }
-        return winningCarNames;
+        return List.copyOf(winningCarNames);
     }
 
 
