@@ -50,8 +50,8 @@ public class Cars {
 
     private void validateCarCount(List<Car> cars) {
         int count = cars.size();
-        if (count < 1 || count > 10000) {
-            throw new IllegalArgumentException("자동차는 1~10,000대까지 등록 가능합니다.");
+        if (count < 1 || count > 1000) {
+            throw new IllegalArgumentException("자동차는 1~1,000대까지 등록 가능합니다.");
         }
     }
 

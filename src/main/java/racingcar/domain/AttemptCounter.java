@@ -21,7 +21,7 @@ public class AttemptCounter {
 
     private void validateAttemptRange(Integer attempt) {
         if (attempt == null || attempt < 1 || attempt > 1000) {
-            throw new IllegalArgumentException("시도 횟수는 1~1000까지 입력 가능합니다.");
+            throw new IllegalArgumentException("시도 횟수는 1~1,000까지 입력 가능합니다.");
         }
     }
 
