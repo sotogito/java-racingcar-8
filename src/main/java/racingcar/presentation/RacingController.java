@@ -19,8 +19,8 @@ public class RacingController {
         Integer attempt = InputView.readAttempt();
 
         RacingRequest racingRequest = new RacingRequest(carNames, attempt);
-
         RacingResponse racingResponse = racingService.race(racingRequest);
+
         OutputView.writeRacingResult(racingResponse);
     }
 
