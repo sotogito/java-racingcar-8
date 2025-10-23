@@ -19,4 +19,5 @@ public class OutputView {
         System.out.printf("최종 우승자 : %s", String.join(", ", winningCarNames));
 
     }
+
 }

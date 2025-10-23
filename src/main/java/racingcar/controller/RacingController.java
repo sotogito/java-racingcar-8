@@ -13,6 +13,7 @@ public class RacingController {
         this.racingService = new RacingService();
     }
 
+
     public void race() {
         String carNames = InputView.readCarNames();
         Integer attempt = InputView.readAttempt();

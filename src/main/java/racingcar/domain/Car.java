@@ -14,6 +14,7 @@ public class Car implements Comparable<Car> {
         this.distance = 0;
     }
 
+
     public String getName() {
         return name;
     }
@@ -26,12 +27,12 @@ public class Car implements Comparable<Car> {
         return Objects.equals(distance, otherCar.distance);
     }
 
+
     private void validateName(String name) {
         if (name == null || name.isBlank() || name.length() > 5) {
             throw new IllegalArgumentException("자동차 이름은 1~5자까지 입력 가능합니다.");
         }
     }
-
 
     @Override
     public boolean equals(Object o) {

@@ -20,10 +20,10 @@ public class CarTest {
         List<Car> cars = List.of(car1, car2);
 
         car1.move();
+        Car actual = Collections.max(cars);
 
-        assertThat(Collections.max(cars)).isEqualTo(car1);
+        assertThat(actual).isEqualTo(car1);
     }
-
 
     @ParameterizedTest
     @ValueSource(strings = {
