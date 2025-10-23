@@ -1,8 +1,8 @@
-package racingcar.controller;
+package racingcar.presentation;
 
+import racingcar.application.RacingService;
 import racingcar.dto.RacingRequest;
 import racingcar.dto.RacingResponse;
-import racingcar.service.RacingService;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 

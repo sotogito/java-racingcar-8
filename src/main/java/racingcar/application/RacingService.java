@@ -1,15 +1,15 @@
-package racingcar.service;
+package racingcar.application;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
-import racingcar.domain.AttemptCounter;
-import racingcar.domain.Cars;
-import racingcar.domain.CarsFactory;
-import racingcar.domain.NumberGenerator;
-import racingcar.domain.RandomNumberGenerator;
+import racingcar.domain.attempt.AttemptCounter;
+import racingcar.domain.car.Cars;
+import racingcar.domain.car.CarsFactory;
+import racingcar.domain.number.NumberGenerator;
 import racingcar.dto.RacingRequest;
 import racingcar.dto.RacingResponse;
+import racingcar.infrastructure.RandomNumberGenerator;
 
 public class RacingService {
     private final NumberGenerator numberGenerator;
@@ -26,7 +26,7 @@ public class RacingService {
         Cars cars = CarsFactory.create(carNames);
         AttemptCounter attemptCounter = new AttemptCounter(attempt);
 
-        return processUpdateCarsDistance(cars, attemptCounter);
+        return processUpdateCarsDistance(cars, attemptCounter); //todo try-catch 예기치못함 오류?
     }
 
 

@@ -1,6 +1,7 @@
-package racingcar.domain;
+package racingcar.infrastructure;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import racingcar.domain.number.NumberGenerator;
 
 public class RandomNumberGenerator implements NumberGenerator {
 

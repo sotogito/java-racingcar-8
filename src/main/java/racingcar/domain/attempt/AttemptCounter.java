@@ -1,4 +1,4 @@
-package racingcar.domain;
+package racingcar.domain.attempt;
 
 public class AttemptCounter {
     private int attempt;

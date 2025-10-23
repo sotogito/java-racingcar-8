@@ -1,4 +1,4 @@
-package racingcar.domain;
+package racingcar.domain.attempt;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
