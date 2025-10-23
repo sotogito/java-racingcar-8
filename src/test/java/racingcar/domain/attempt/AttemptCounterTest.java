@@ -1,8 +1,8 @@
 package racingcar.domain.attempt;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -17,7 +17,7 @@ class AttemptCounterTest {
         attemptCounter.decreaseAttempt();
         boolean actual = attemptCounter.isOver();
 
-        assertTrue(actual);
+        assertThat(actual).isTrue();
     }
 
     @ParameterizedTest
