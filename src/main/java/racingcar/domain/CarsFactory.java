@@ -7,6 +7,7 @@ public class CarsFactory {
     private final static String SCAR_NAME_DELIMITER = ",";
     private final static int CAR_NAME_SPLIT_LIMIT = -1;
 
+
     public static Cars create(String inputCarNames) {
         List<String> carNames = parseCarNames(inputCarNames);
 
@@ -16,6 +17,7 @@ public class CarsFactory {
                         .toList()
         );
     }
+
 
     private static Car createCar(String carName) {
         return new Car(carName.trim());
