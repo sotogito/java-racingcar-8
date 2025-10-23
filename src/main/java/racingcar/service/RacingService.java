@@ -3,6 +3,7 @@ package racingcar.service;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import racingcar.domain.AttemptCounter;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
 import racingcar.domain.NumberGenerator;
@@ -17,24 +18,28 @@ public class RacingService {
         numberGenerator = new RandomNumberGenerator();
     }
 
+
     public RacingResponse race(RacingRequest racingRequest) {
         List<String> carNames = parseCarNames(racingRequest.carNames());
         Integer attempt = racingRequest.attempt();
 
         Cars cars = createRacing(carNames);
+        AttemptCounter attemptCounter = new AttemptCounter(attempt);
 
-        return processUpdateCarsDistance(cars, attempt);
+        return processUpdateCarsDistance(cars, attemptCounter);
     }
 
-    private RacingResponse processUpdateCarsDistance(Cars cars, Integer attempt) {
+
+    private RacingResponse processUpdateCarsDistance(Cars cars, AttemptCounter attemptCounter) {
         List<String> carDistancePrintout = new ArrayList<>();
         int carsCount = cars.getCarsCount();
 
-        for (int round = 1; round <= attempt; round++) {
+        while (!attemptCounter.isOver()) {
             List<Integer> randomNumbers = getRandomNumbersByCarsCount(carsCount);
             cars.updateCarsDistance(randomNumbers);
 
             carDistancePrintout.add(cars.toString());
+            attemptCounter.decreaseAttempt();
         }
         return new RacingResponse(carDistancePrintout, cars.getWinningCarNames());
     }
