@@ -25,6 +25,18 @@ public class CarTest {
         assertThat(actual).isEqualTo(car1);
     }
 
+    @Test
+    void 우승_여부_반환() {
+        Car car1 = new Car("수키피");
+        Car car2 = new Car("파블로");
+
+        car1.move();
+        car2.move();
+        boolean actual = car1.isWinningCar(car2);
+
+        assertThat(actual).isTrue();
+    }
+
     @ParameterizedTest
     @ValueSource(strings = {
             "가나다라마바사",
