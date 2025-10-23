@@ -7,7 +7,6 @@ public class Car implements Comparable<Car> {
     private Integer distance;
 
     public Car(String name) {
-        name = name.trim();
         validateName(name);
 
         this.name = name;

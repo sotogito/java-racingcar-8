@@ -1,12 +1,11 @@
 package racingcar.service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
 import racingcar.domain.AttemptCounter;
-import racingcar.domain.Car;
 import racingcar.domain.Cars;
+import racingcar.domain.CarsFactory;
 import racingcar.domain.NumberGenerator;
 import racingcar.domain.RandomNumberGenerator;
 import racingcar.dto.RacingRequest;
@@ -21,10 +20,10 @@ public class RacingService {
 
 
     public RacingResponse race(RacingRequest racingRequest) {
-        List<String> carNames = parseCarNames(racingRequest.carNames());
+        String carNames = racingRequest.carNames();
         Integer attempt = racingRequest.attempt();
 
-        Cars cars = createRacing(carNames);
+        Cars cars = CarsFactory.create(carNames);
         AttemptCounter attemptCounter = new AttemptCounter(attempt);
 
         return processUpdateCarsDistance(cars, attemptCounter);
@@ -49,18 +48,6 @@ public class RacingService {
         return IntStream.range(0, carsCount)
                 .mapToObj(i -> numberGenerator.generate())
                 .toList();
-    }
-
-    private Cars createRacing(List<String> carNames) {
-        return new Cars(
-                carNames.stream()
-                        .map(Car::new)
-                        .toList()
-        );
-    }
-
-    private List<String> parseCarNames(String carNames) {
-        return Arrays.stream(carNames.split(",", -1)).toList();
     }
 
 }
