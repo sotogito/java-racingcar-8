@@ -26,11 +26,18 @@ public class RacingService {
         Cars cars = CarsFactory.create(carNames);
         AttemptCounter attemptCounter = new AttemptCounter(attempt);
 
-        return processUpdateCarsDistance(cars, attemptCounter);
+        return getRacingResult(cars, attemptCounter);
     }
 
 
-    private RacingResponse processUpdateCarsDistance(Cars cars, AttemptCounter attemptCounter) {
+    private RacingResponse getRacingResult(Cars cars, AttemptCounter attemptCounter) {
+        List<String> carDistancePrintout = processUpdateCarsDistance(cars, attemptCounter);
+        List<String> winningCarNames = cars.getWinningCarNames();
+
+        return new RacingResponse(carDistancePrintout, winningCarNames);
+    }
+
+    private List<String> processUpdateCarsDistance(Cars cars, AttemptCounter attemptCounter) {
         List<String> carDistancePrintout = new ArrayList<>();
         int carsCount = cars.getCarsCount();
 
@@ -41,7 +48,7 @@ public class RacingService {
             carDistancePrintout.add(cars.toString());
             attemptCounter.decreaseAttempt();
         }
-        return new RacingResponse(carDistancePrintout, cars.getWinningCarNames());
+        return List.copyOf(carDistancePrintout);
     }
 
     private List<Integer> getRandomNumbersByCarsCount(int carsCount) {
