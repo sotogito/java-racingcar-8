@@ -7,20 +7,30 @@ public class InputView {
     private final static String READ_ATTEMPT_PRINTOUT = "시도할 횟수는 몇 회인가요?";
 
     public static String readCarNames() {
-        try {
-            System.out.println(READ_CAR_NAME_PRINTOUT);
+        System.out.println(READ_CAR_NAME_PRINTOUT);
 
-            return Console.readLine().trim();
-        } catch (NullPointerException e) {
+        return read();
+    }
+
+    public static Integer readAttempt() {
+        System.out.println(READ_ATTEMPT_PRINTOUT);
+
+        try {
+            return Integer.parseInt(read());
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException("잘못된 입력입니다.");
         }
     }
 
-    public static Integer readAttempt() {
-        try {
-            System.out.println(READ_ATTEMPT_PRINTOUT);
 
-            return Integer.parseInt(Console.readLine().trim());
+    private static String read() {
+        try {
+            String input = Console.readLine().trim();
+            if (input.isEmpty()) {
+                throw new IllegalArgumentException("잘못된 입력입니다.");
+            }
+
+            return input;
         } catch (NullPointerException e) {
             throw new IllegalArgumentException("잘못된 입력입니다.");
         }
