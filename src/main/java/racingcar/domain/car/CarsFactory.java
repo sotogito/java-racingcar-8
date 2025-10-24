@@ -8,7 +8,7 @@ public class CarsFactory {
     private final static int CAR_NAME_SPLIT_LIMIT = -1;
 
     public static Cars create(final String inputCarNames) {
-        final List<String> carNames = parseCarNames(inputCarNames);
+        List<String> carNames = parseCarNames(inputCarNames);
 
         return new Cars(
                 carNames.stream()

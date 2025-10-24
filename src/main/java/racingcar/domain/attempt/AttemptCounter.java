@@ -3,7 +3,7 @@ package racingcar.domain.attempt;
 public class AttemptCounter {
     private int attempt;
 
-    public AttemptCounter(final Integer attempt) {
+    public AttemptCounter(Integer attempt) {
         validateAttemptRange(attempt);
 
         this.attempt = attempt;

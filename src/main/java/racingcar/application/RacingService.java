@@ -23,23 +23,23 @@ public class RacingService {
         final String carNames = racingRequest.carNames();
         final Integer attempt = racingRequest.attempt();
 
-        final Cars cars = CarsFactory.create(carNames);
-        final AttemptCounter attemptCounter = new AttemptCounter(attempt);
+        Cars cars = CarsFactory.create(carNames);
+        AttemptCounter attemptCounter = new AttemptCounter(attempt);
 
         return getRacingResult(cars, attemptCounter);
     }
 
 
     private RacingResponse getRacingResult(final Cars cars, final AttemptCounter attemptCounter) {
-        final List<String> carDistancePrintout = processUpdateCarsDistance(cars, attemptCounter);
-        final List<String> winningCarNames = cars.getWinningCarNames();
+        List<String> carDistancePrintout = processUpdateCarsDistance(cars, attemptCounter);
+        List<String> winningCarNames = cars.getWinningCarNames();
 
         return new RacingResponse(carDistancePrintout, winningCarNames);
     }
 
     private List<String> processUpdateCarsDistance(final Cars cars, final AttemptCounter attemptCounter) {
-        final List<String> carDistancePrintout = new ArrayList<>();
-        final int carsCount = cars.getCarsCount();
+        List<String> carDistancePrintout = new ArrayList<>();
+        int carsCount = cars.getCarsCount();
 
         while (!attemptCounter.isOver()) {
             List<Integer> randomNumbers = getRandomNumbersByCarsCount(carsCount);

@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 public class Cars {
     private final List<Car> cars;
 
-    public Cars(final List<Car> cars) {
+    public Cars(List<Car> cars) {
         validateCarCount(cars);
         validateDuplicatedName(cars);
 
@@ -50,14 +50,14 @@ public class Cars {
     }
 
     private void validateCarCount(final List<Car> cars) {
-        final int count = cars.size();
+        int count = cars.size();
         if (count < 1 || count > 1000) {
             throw new IllegalArgumentException("자동차는 1~1,000대까지 등록 가능합니다.");
         }
     }
 
     private void validateDuplicatedName(final List<Car> cars) {
-        final Set<Car> duplicatedCars = new HashSet<>(cars);
+        Set<Car> duplicatedCars = new HashSet<>(cars);
         if (cars.size() != duplicatedCars.size()) {
             throw new IllegalArgumentException("이름이 중복인 자동차가 존재합니다.");
         }

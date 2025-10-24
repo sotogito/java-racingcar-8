@@ -6,7 +6,7 @@ public class Car implements Comparable<Car> {
     private final String name;
     private Integer distance;
 
-    public Car(final String name) {
+    public Car(String name) {
         validateName(name);
 
         this.name = name;
