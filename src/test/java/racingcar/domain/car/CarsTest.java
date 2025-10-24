@@ -79,6 +79,18 @@ class CarsTest {
     }
 
     @Test
+    void 랜덤숫자_리스트_크기와_자동차_수가_다른_경우_예외처리() {
+        Car car1 = new Car("가");
+        Cars cars = new Cars(List.of(car1));
+        List<Integer> randomNumbers = List.of(1, 8);
+
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> cars.updateCarsDistance(randomNumbers))
+                        .isInstanceOf(IllegalArgumentException.class)
+        );
+    }
+
+    @Test
     void 랜덤숫자_리스트_요소에_null_포함_예외처리() {
         Car car1 = new Car("가");
         Car car2 = new Car("나");
