@@ -56,3 +56,35 @@
 
 #### B
 - 시도할 횟수가 숫자인가? - view try-catch
+
+---
+### 패키지 구조
+
+```
+└── src
+    ├── main
+    │   └── java
+    │       └── racingcar
+    │           ├── Application.java
+    │           ├── application
+    │           │   └── RacingService.java
+    │           ├── domain
+    │           │   ├── attempt
+    │           │   │   └── AttemptCounter.java
+    │           │   ├── car
+    │           │   │   ├── Car.java
+    │           │   │   ├── Cars.java
+    │           │   │   └── CarsFactory.java
+    │           │   └── number
+    │           │       └── NumberGenerator.java
+    │           ├── dto
+    │           │   ├── RacingRequest.java
+    │           │   └── RacingResponse.java
+    │           ├── infrastructure
+    │           │   └── RandomNumberGenerator.java
+    │           ├── presentation
+    │           │   └── RacingController.java
+    │           └── view
+    │               ├── InputView.java
+    │               └── OutputView.java
+```
