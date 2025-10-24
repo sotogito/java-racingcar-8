@@ -15,11 +15,11 @@ public class RacingController {
 
 
     public void race() {
-        String carNames = InputView.readCarNames();
-        Integer attempt = InputView.readAttempt();
+        final String carNames = InputView.readCarNames();
+        final Integer attempt = InputView.readAttempt();
 
-        RacingRequest racingRequest = new RacingRequest(carNames, attempt);
-        RacingResponse racingResponse = racingService.race(racingRequest);
+        final RacingRequest racingRequest = new RacingRequest(carNames, attempt);
+        final RacingResponse racingResponse = racingService.race(racingRequest);
 
         OutputView.writeRacingResult(racingResponse);
     }

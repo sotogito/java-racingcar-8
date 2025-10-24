@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 public class Cars {
     private final List<Car> cars;
 
-    public Cars(List<Car> cars) {
+    public Cars(final List<Car> cars) {
         validateCarCount(cars);
         validateDuplicatedName(cars);
 
@@ -21,7 +21,7 @@ public class Cars {
         return cars.size();
     }
 
-    public void updateCarsDistance(List<Integer> randomNumbers) {
+    public void updateCarsDistance(final List<Integer> randomNumbers) {
         validateRandomNumbers(randomNumbers);
 
         for (int i = 0; i < cars.size(); i++) {
@@ -36,7 +36,7 @@ public class Cars {
     }
 
     public List<String> getWinningCarNames() {
-        Car winningCar = Collections.max(cars);
+        final Car winningCar = Collections.max(cars);
 
         return cars.stream()
                 .filter(car -> car.isWinningCar(winningCar))
@@ -45,31 +45,31 @@ public class Cars {
     }
 
 
-    private boolean canMove(int randomNumber) {
+    private boolean canMove(final int randomNumber) {
         return randomNumber >= 4;
     }
 
-    private void validateCarCount(List<Car> cars) {
-        int count = cars.size();
+    private void validateCarCount(final List<Car> cars) {
+        final int count = cars.size();
         if (count < 1 || count > 1000) {
             throw new IllegalArgumentException("자동차는 1~1,000대까지 등록 가능합니다.");
         }
     }
 
-    private void validateDuplicatedName(List<Car> cars) {
-        Set<Car> duplicatedCars = new HashSet<>(cars);
+    private void validateDuplicatedName(final List<Car> cars) {
+        final Set<Car> duplicatedCars = new HashSet<>(cars);
         if (cars.size() != duplicatedCars.size()) {
             throw new IllegalArgumentException("이름이 중복인 자동차가 존재합니다.");
         }
     }
 
-    private void validateRandomNumbers(List<Integer> randomNumbers) {
+    private void validateRandomNumbers(final List<Integer> randomNumbers) {
         if (randomNumbers == null || cars.size() != randomNumbers.size()) {
             throw new IllegalArgumentException("예기치 못한 오류가 발생했습니다.");
         }
     }
 
-    private void validateRandomNumber(Integer randomNumber) {
+    private void validateRandomNumber(final Integer randomNumber) {
         if (randomNumber == null) {
             throw new IllegalArgumentException("예기치 못한 오류가 발생했습니다.");
         }

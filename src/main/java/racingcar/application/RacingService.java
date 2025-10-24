@@ -19,27 +19,27 @@ public class RacingService {
     }
 
 
-    public RacingResponse race(RacingRequest racingRequest) {
-        String carNames = racingRequest.carNames();
-        Integer attempt = racingRequest.attempt();
+    public RacingResponse race(final RacingRequest racingRequest) {
+        final String carNames = racingRequest.carNames();
+        final Integer attempt = racingRequest.attempt();
 
-        Cars cars = CarsFactory.create(carNames);
-        AttemptCounter attemptCounter = new AttemptCounter(attempt);
+        final Cars cars = CarsFactory.create(carNames);
+        final AttemptCounter attemptCounter = new AttemptCounter(attempt);
 
         return getRacingResult(cars, attemptCounter);
     }
 
 
-    private RacingResponse getRacingResult(Cars cars, AttemptCounter attemptCounter) {
-        List<String> carDistancePrintout = processUpdateCarsDistance(cars, attemptCounter);
-        List<String> winningCarNames = cars.getWinningCarNames();
+    private RacingResponse getRacingResult(final Cars cars, final AttemptCounter attemptCounter) {
+        final List<String> carDistancePrintout = processUpdateCarsDistance(cars, attemptCounter);
+        final List<String> winningCarNames = cars.getWinningCarNames();
 
         return new RacingResponse(carDistancePrintout, winningCarNames);
     }
 
-    private List<String> processUpdateCarsDistance(Cars cars, AttemptCounter attemptCounter) {
-        List<String> carDistancePrintout = new ArrayList<>();
-        int carsCount = cars.getCarsCount();
+    private List<String> processUpdateCarsDistance(final Cars cars, final AttemptCounter attemptCounter) {
+        final List<String> carDistancePrintout = new ArrayList<>();
+        final int carsCount = cars.getCarsCount();
 
         while (!attemptCounter.isOver()) {
             List<Integer> randomNumbers = getRandomNumbersByCarsCount(carsCount);
@@ -51,7 +51,7 @@ public class RacingService {
         return List.copyOf(carDistancePrintout);
     }
 
-    private List<Integer> getRandomNumbersByCarsCount(int carsCount) {
+    private List<Integer> getRandomNumbersByCarsCount(final int carsCount) {
         return IntStream.range(0, carsCount)
                 .mapToObj(i -> numberGenerator.generate())
                 .toList();
