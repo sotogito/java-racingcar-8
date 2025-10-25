@@ -19,11 +19,9 @@ public class Cars {
 
 
     public void moveAllCars(final MoveStrategy moveStrategy) {
-        for (Car car : cars) {
-            if (moveStrategy.canMove()) {
-                car.move();
-            }
-        }
+        cars.stream()
+                .filter(car -> moveStrategy.canMove())
+                .forEach(Car::move);
     }
 
     public List<String> getWinningCarNames() {
