@@ -26,11 +26,19 @@
 - 입력한 이름 순서대로 출력한다.
 - 점수 출력은 (점수 * '-')로 표현한다.
 
+---
+
 ### 주요 비지니스 로직
 - 랜덤 생성 후
 - 각 자동차 전진 + 1회당 상태 저장
 - 회당 각 점수 출력
 - 우승자 출력
+
+### 주요 도메인
+- Car : 각 자동차들의 상태를 관리한다.
+- Cars : 모든 자동차들을 관리한다.
+
+---
 
 ### 사용자 시점 플로우
 1. 경주할 자동차 이름을 입력받는다.
@@ -38,21 +46,21 @@
 3. 차수별 실행 결과와 우승자를 출력한다.
 
 ### 애플리케이션 시점 플로우
-1. 경주할 자동차 이름은 입력을입력받는다.
+1. 경주할 자동차 이름을 입력받는다.
 2. 시도할 횟수를 입력받는다. + 유효 검증 B
 3. 유효검증 A
-4. 시도할 횟수만큼 각 자동차만큼 랜덤 숫자를 생성시킨다.
-5. 자동차를 생성된 랜덤 숫자를 기반으로 전진시킨다.
-5. 시도 횟수마다의 상태를 저장한다.
-6. 출력한다.
+4. 시도할 횟수만큼 각 자동차들의 전진을 시도한다. + 시도 횟수마다의 상태 저장
+6. 실행 결과와 우승자를 출력한다.
+
+---
 
 ### 유효 검증
 - 사용자가 잘못된 값을 입력할 경우 `IllegalArgumentException`을 발생시킨 후 애플리케이션은 종료되어야 한다.
 #### A
 - 자동차 이름이 5자 이하인가?
-- 자동차 이름 수 Max 검사 - 1000대
+- 자동차 이름 수 Max 검사 - 1,000대
 - 시도할 룃수가 1 이상인가? -  0안됨, 음수 안됨
-- 시도할 횟수 Max 검사 - 1000번
+- 시도할 횟수 Max 검사 - 1,000번
 
 #### B
 - 시도할 횟수가 숫자인가? - view try-catch
@@ -61,30 +69,29 @@
 ### 패키지 구조
 
 ```
-└── src
-    ├── main
-    │   └── java
-    │       └── racingcar
-    │           ├── Application.java
-    │           ├── application
-    │           │   └── RacingService.java
-    │           ├── domain
-    │           │   ├── attempt
-    │           │   │   └── AttemptCounter.java
-    │           │   ├── car
-    │           │   │   ├── Car.java
-    │           │   │   ├── Cars.java
-    │           │   │   └── CarsFactory.java
-    │           │   └── number
-    │           │       └── NumberGenerator.java
-    │           ├── dto
-    │           │   ├── RacingRequest.java
-    │           │   └── RacingResponse.java
-    │           ├── infrastructure
-    │           │   └── RandomNumberGenerator.java
-    │           ├── presentation
-    │           │   └── RacingController.java
-    │           └── view
-    │               ├── InputView.java
-    │               └── OutputView.java
+src/main/
+└── java
+    └── racingcar
+        ├── Application.java
+        ├── application
+        │   └── RacingService.java
+        ├── domain
+        │   ├── attempt
+        │   │   └── AttemptCounter.java
+        │   ├── car
+        │   │   ├── Car.java
+        │   │   ├── Cars.java
+        │   │   └── CarsFactory.java
+        │   └── number
+        │       └── MoveStrategy.java
+        ├── dto
+        │   ├── RacingRequest.java
+        │   └── RacingResponse.java
+        ├── infrastructure
+        │   └── RandomNumberStrategy.java
+        ├── presentation
+        │   └── RacingController.java
+        └── view
+            ├── InputView.java
+            └── OutputView.java
 ```
