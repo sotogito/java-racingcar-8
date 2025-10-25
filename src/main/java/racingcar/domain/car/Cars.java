@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import racingcar.domain.number.MoveStrategy;
 
 public class Cars {
     private final List<Car> cars;
@@ -17,19 +18,9 @@ public class Cars {
     }
 
 
-    public int getCarsCount() {
-        return cars.size();
-    }
-
-    public void updateCarsDistance(final List<Integer> randomNumbers) {
-        validateRandomNumbers(randomNumbers);
-
-        for (int i = 0; i < cars.size(); i++) {
-            Car car = cars.get(i);
-            Integer randomNumber = randomNumbers.get(i);
-            validateRandomNumber(randomNumber);
-
-            if (canMove(randomNumber)) {
+    public void moveAllCars(final MoveStrategy moveStrategy) {
+        for (Car car : cars) {
+            if (moveStrategy.canMove()) {
                 car.move();
             }
         }
@@ -45,10 +36,6 @@ public class Cars {
     }
 
 
-    private boolean canMove(final int randomNumber) {
-        return randomNumber >= 4;
-    }
-
     private void validateCarCount(final List<Car> cars) {
         int count = cars.size();
         if (count < 1 || count > 1000) {
@@ -60,18 +47,6 @@ public class Cars {
         Set<Car> duplicatedCars = new HashSet<>(cars);
         if (cars.size() != duplicatedCars.size()) {
             throw new IllegalArgumentException("이름이 중복인 자동차가 존재합니다.");
-        }
-    }
-
-    private void validateRandomNumbers(final List<Integer> randomNumbers) {
-        if (randomNumbers == null || cars.size() != randomNumbers.size()) {
-            throw new IllegalArgumentException("예기치 못한 오류가 발생했습니다.");
-        }
-    }
-
-    private void validateRandomNumber(final Integer randomNumber) {
-        if (randomNumber == null) {
-            throw new IllegalArgumentException("예기치 못한 오류가 발생했습니다.");
         }
     }
 
