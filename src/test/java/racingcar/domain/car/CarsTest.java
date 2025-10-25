@@ -1,28 +1,35 @@
 package racingcar.domain.car;
 
+import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.Test;
+import racingcar.domain.number.MoveStrategy;
+import racingcar.infrastructure.RandomNumberStrategy;
 
 class CarsTest {
+    private static final int MOVING_FORWARD = 4;
+    private static final int STOP = 3;
+    private final MoveStrategy moveStrategy = new RandomNumberStrategy();
 
     @Test
-    void 랜덤숫자에_따른_자동차등_전진() {
+    void 자동차등_전진() {
         Car car1 = new Car("가");
         Car car2 = new Car("나");
         Cars cars = new Cars(List.of(car1, car2));
-        List<Integer> randomNumbers = List.of(1, 8);
 
-        cars.updateCarsDistance(randomNumbers);
+        assertRandomNumberInRangeTest(
+                () -> {
+                    cars.moveAllCars(moveStrategy);
+                    String actual = cars.toString();
 
-        String actual = car2.toString();
-        String expected = "나 : -";
-
-        assertThat(actual).isEqualTo(expected);
+                    assertThat(actual).contains("가 : -", "나 : ");
+                },
+                MOVING_FORWARD, STOP
+        );
     }
 
     @Test
@@ -74,33 +81,6 @@ class CarsTest {
 
         assertSimpleTest(() ->
                 assertThatThrownBy(() -> new Cars(cars))
-                        .isInstanceOf(IllegalArgumentException.class)
-        );
-    }
-
-    @Test
-    void 랜덤숫자_리스트_크기와_자동차_수가_다른_경우_예외처리() {
-        Car car1 = new Car("가");
-        Cars cars = new Cars(List.of(car1));
-        List<Integer> randomNumbers = List.of(1, 8);
-
-        assertSimpleTest(() ->
-                assertThatThrownBy(() -> cars.updateCarsDistance(randomNumbers))
-                        .isInstanceOf(IllegalArgumentException.class)
-        );
-    }
-
-    @Test
-    void 랜덤숫자_리스트_요소에_null_포함_예외처리() {
-        Car car1 = new Car("가");
-        Car car2 = new Car("나");
-        Cars cars = new Cars(List.of(car1, car2));
-        List<Integer> randomNumbers = new ArrayList<>();
-        randomNumbers.add(null);
-        randomNumbers.add(1);
-
-        assertSimpleTest(() ->
-                assertThatThrownBy(() -> cars.updateCarsDistance(randomNumbers))
                         .isInstanceOf(IllegalArgumentException.class)
         );
     }
